@@ -1,0 +1,3 @@
+include ':autocompletechip'
+include ':app'
+rootProject.name = "MyDenoInputChip"
