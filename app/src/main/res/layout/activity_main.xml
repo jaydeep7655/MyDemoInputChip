@@ -2,52 +2,99 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context="com.example.mydenoinputchip.MainActivity">
 
 
-
-    <com.materialchips.ChipsInput
-        android:id="@+id/chips_input"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="2dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="2.25"
-        android:imeOptions="flagNoExtractUi|flagNoFullscreen"
-        android:background="@drawable/drawable_border_gray"
-        android:padding="4dp"
-        android:textSize="14sp"
-        app:chip_deletable="true"
-        app:chip_deleteIcon="@mipmap/cross"
-        app:chip_hasAvatarIcon="false"
-        app:chip_background="@drawable/round_rect_blue"
-        app:chip_labelColor="@android:color/white"
-        app:fontSize="10sp"
-        app:isHorizontal="true"
-        app:showChipDetailed="false" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:padding="10dp"
+            android:layout_marginEnd="5dp"/>
+
+        <com.materialchips.ChipsInput
+            android:id="@+id/chips_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="2dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/drawable_border_gray"
+            android:imeOptions="flagNoExtractUi|flagNoFullscreen"
+            android:padding="4dp"
+            android:textSize="14sp"
+            app:chip_background="@drawable/round_rect_blue"
+            app:chip_deletable="true"
+            app:chip_deleteIcon="@mipmap/cross"
+            app:chip_hasAvatarIcon="false"
+            app:chip_labelColor="@android:color/white"
+            app:fontSize="10sp"
+            app:isHorizontal="true"
+            app:showChipDetailed="false" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CC"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:padding="10dp"
+            android:layout_marginEnd="5dp"/>
+
+        <com.materialchips.ChipsInput
+            android:id="@+id/cc_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="2dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/drawable_border_gray"
+            android:imeOptions="flagNoExtractUi|flagNoFullscreen"
+            android:padding="4dp"
+            android:textSize="14sp"
+            app:chip_background="@drawable/round_rect_blue"
+            app:chip_deletable="true"
+            app:chip_deleteIcon="@mipmap/cross"
+            app:chip_hasAvatarIcon="false"
+            app:chip_labelColor="@android:color/white"
+            app:fontSize="10sp"
+            app:isHorizontal="true"
+            app:showChipDetailed="false" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/validate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Validate"/>
+        android:text="Validate" />
 
     <TextView
         android:id="@+id/chip_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/addInChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Add In Chip"/>
+        android:text="Add In Chip" />
 
 </LinearLayout>

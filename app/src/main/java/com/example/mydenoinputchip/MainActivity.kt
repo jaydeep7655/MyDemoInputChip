@@ -1,14 +1,18 @@
 package com.example.mydenoinputchip
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.materialchips.ChipsInput
+import com.materialchips.model.ChipInterface
 
 class MainActivity : AppCompatActivity() {
     private lateinit var chipsUser: ChipsInput
+    private lateinit var CC_input: ChipsInput
     private var mUserList: ArrayList<ResultSet>? = null
     lateinit  var mValidateButton: Button
     lateinit  var mAddInChipButton: Button
@@ -18,10 +22,34 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         getList()
+        chipValidation()
     }
-      private fun getList() {
+
+    private fun chipValidation() {
+        // chips listener
+        chipsUser.addChipsListener(object : ChipsInput.ChipsListener {
+
+            override fun onChipAdded(chip: ChipInterface?, newSize: Int) {
+                Toast.makeText(applicationContext,"Chip Added",Toast.LENGTH_SHORT).show()
+
+
+
+            }
+
+            override fun onChipRemoved(chip: ChipInterface?, newSize: Int) {
+                Toast.makeText(applicationContext,"Chip Removed",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onTextChanged(text: CharSequence) {
+
+            }
+        })
+    }
+
+    private fun getList() {
           mUserList = java.util.ArrayList()
-        chipsUser = findViewById(R.id.chips_input) as ChipsInput
+          chipsUser = findViewById(R.id.chips_input) as ChipsInput
+          CC_input = findViewById(R.id.cc_input) as ChipsInput
           mValidateButton=findViewById(R.id.validate)
           mAddInChipButton=findViewById(R.id.addInChip)
           mChipListText=findViewById(R.id.chip_list)
@@ -37,6 +65,9 @@ class MainActivity : AppCompatActivity() {
         }
         // pass contact list to chips input
           chipsUser.filterableList = mUserList
+          CC_input.filterableList = mUserList
+
+
 
           // show selected chips
           mValidateButton.setOnClickListener(object : View.OnClickListener {
@@ -44,11 +75,13 @@ class MainActivity : AppCompatActivity() {
                   var listString = ""
                   for (chip in chipsUser.getSelectedChipList()) {
                       listString += chip.getUserName()
-                          .toString() + " (" + (if (chip.userIndex != null) chip.userName else "") + ")" + ", "
+                          .toString() + " (" + (if (chip.userIndex != null) chip.fullName else "") + ")" + ", "
                   }
                   mChipListText.setText(listString)
               }
           })
+
+
 
           // show selected chips
 
