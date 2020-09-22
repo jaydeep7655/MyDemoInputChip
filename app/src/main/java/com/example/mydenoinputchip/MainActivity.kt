@@ -13,9 +13,14 @@ import com.materialchips.model.ChipInterface
 class MainActivity : AppCompatActivity() {
     private lateinit var chipsUser: ChipsInput
     private lateinit var CC_input: ChipsInput
+
+
     private var mUserList: ArrayList<ResultSet>? = null
+
+
     lateinit  var mValidateButton: Button
     lateinit  var mAddInChipButton: Button
+
     lateinit  var mChipListText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +35,12 @@ class MainActivity : AppCompatActivity() {
         chipsUser.addChipsListener(object : ChipsInput.ChipsListener {
 
             override fun onChipAdded(chip: ChipInterface?, newSize: Int) {
-                Toast.makeText(applicationContext,"Chip Added",Toast.LENGTH_SHORT).show()
+                if(CC_input.selectedChipList.contains(chip)){
+                    Toast.makeText(applicationContext,"User alredy In CC",Toast.LENGTH_SHORT).show()
+                }
+
+
+
 
 
 
@@ -44,6 +54,24 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
+        CC_input.addChipsListener(object : ChipsInput.ChipsListener {
+
+            override fun onChipAdded(chip: ChipInterface?, newSize: Int) {
+               if(chipsUser.selectedChipList.contains(chip)){
+                   Toast.makeText(applicationContext,"User alredy In User",Toast.LENGTH_SHORT).show()
+               }
+
+            }
+
+            override fun onChipRemoved(chip: ChipInterface?, newSize: Int) {
+                Toast.makeText(applicationContext,"Chip Removed",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onTextChanged(text: CharSequence) {
+
+            }
+        })
+
     }
 
     private fun getList() {
